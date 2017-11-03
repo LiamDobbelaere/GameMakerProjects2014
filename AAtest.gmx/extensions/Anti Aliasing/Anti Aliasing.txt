@@ -1,0 +1,67 @@
+Anti Aliasing engine by Soleil
+
+These scripts are designed so that appending aa_* to a draw_* function will draw the exact same shape, exect anti-aliased. Further functionality may be available in some functions, which will be listed below. Notably, the polar line functions are able to skip two trig functions and are therefore slightly faster if you can use them.
+
+This package requires texture interpolation. If you switch it off, remember to switch it back on - these scripts look horrible without it. If you want to temporairly switch back to default GM lines, simply use aa_set_on(false) and the package will take care of it for you.
+ 
+Feathering:
+Blurs the sides of a wide line to a certain %. A feather of 0.6 on a 10px line will blur 3px on either edge.
+
+Fade types:
+0 normal
+1 fade end
+2 fade start
+3 fade both ends
+4 fade middle
+
+Interface Functions:
+
+aa_set_on(on) - Turns antialiasing on or off
+
+aa_flip_on() - Flips antialiasing on or off
+
+aa_set_arrow_angle(angle) - Sets the angle of arrowheads (default 20)
+
+aa_draw_set_circle_precision(precision) - Sets the precision of circles, low values look bad on large circles (default 32)
+
+
+Draw Functions
+
+aa_draw_line(x0,y0,x1,y1)
+aa_draw_line_color(x0,y0,x1,y1,c0,c1)
+aa_draw_line_width(x0,y0,x1,y1,w)
+aa_draw_line_width_color(x0,y0,x1,y1,w,c0,c1)
+aa_draw_line_ext(x0,y0,x1,y1,color,alpha,width,feather,fade)
+
+aa_draw_line_polar(x,y,length,dir)
+aa_draw_line_polar_color(x,y,length,dir,c0,c1)
+aa_draw_line_polar_width(x,y,length,dir,w)
+aa_draw_line_polar_width_color(x,y,length,dir,w,c0,c1)
+aa_draw_line_polar_ext(x,y,length,dir,color,alpha,width,feather,fade)
+
+aa_draw_arrow(x0,y0,x1,y1,size)
+aa_draw_arrow_polar(x,y,length,dir,size)
+
+aa_draw_triangle(x0,y0,x1,y1,x2,y2,outline)
+
+aa_draw_circle(x,y,r,outline)
+
+aa_draw_rectangle_ext(x,y,w,h,outline,angle) - can draw a rotated rectangle. x,y is in center of rectangle.
+
+aa_draw_path(path,x,y,absolute)
+
+aa_prime_create(type) - creates a new prime of a pr_type, returns an id used by other functions
+aa_prime_destroy(prime) - frees a prime's slot for later use (does not reduce memory, as it's all arrays)
+aa_prime_vertex(prime,x,y,color) - adds a vertex of color c at x,y to a prime
+aa_prime_draw(prime,x,y,rot) - draws a prime at x,y with angle rot
+
+aa_model_create() - creates a new model, returns an id used by other functions
+aa_model_destroy(model) - frees a model's slot for later use (does not free memory, as it's all arrays)
+aa_model_prime(model,prime,x,y,rot) - adds a prime to a model at x,y with angle rot
+aa_model_draw(model,x,y,rot) - draws a model at x,y with angle rot
+
+----------
+
+Credit Soleil if used in a full game, don't worry about it for small examples. I use this by default for testing.
+
+Drop me a PM if you have a request, comment, or minor edit.
